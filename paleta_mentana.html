@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paleta MENTANA — Tinta y filo</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap');
+
+:root{
+  --fondo:#1A1426; --superficie:#251D34; --superficie2:#322746; --borde:#3D3154;
+  --primario:#8B6CFF; --primario-press:#7457E6; --filo:#FF9F45; --filo-press:#F08A2E;
+  --texto:#F4EFFA; --texto-tenue:#B3A6C8; --sobre-claro:#15101F;
+  --exito:#4ED9A4; --error:#FF6B7A; --aviso:#FFC857;
+  --cat-atencion:#FFB454; --cat-memoria:#8B6CFF; --cat-calculo:#4ED9A4;
+  --cat-velocidad:#FF6B9D; --cat-logica:#4FC3F7;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --cuerpo:"Hanken Grotesk",system-ui,sans-serif;
+  --r-md:16px; --r-lg:24px; --r-pill:999px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--fondo);color:var(--texto);font-family:var(--cuerpo);
+  line-height:1.5;padding:28px 20px 60px;max-width:520px;margin:auto;}
+h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.01em;line-height:1.05;}
+.eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--texto-tenue);font-weight:600;}
+
+/* Encabezado */
+.hero{padding-bottom:8px;border-bottom:1px solid var(--borde);margin-bottom:28px;}
+.wordmark{font-family:var(--display);font-weight:800;font-size:3.2rem;
+  background:linear-gradient(135deg,#8B6CFF 0%,#FF9F45 120%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero p{color:var(--texto-tenue);margin-top:4px;}
+
+.section-title{margin:30px 0 14px;font-size:.72rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--texto-tenue);font-weight:700;}
+
+/* Muestras */
+.swatches{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.sw{border-radius:var(--r-md);overflow:hidden;border:1px solid var(--borde);}
+.sw .chip{height:64px;}
+.sw .meta{padding:8px 10px;background:var(--superficie);}
+.sw .name{font-weight:700;font-size:.9rem;}
+.sw .hex{color:var(--texto-tenue);font-size:.78rem;letter-spacing:.04em;}
+
+/* Categorías */
+.cats{display:flex;flex-wrap:wrap;gap:8px;}
+.cat{padding:6px 14px;border-radius:var(--r-pill);font-weight:700;font-size:.82rem;}
+.c-at{color:var(--cat-atencion);background:rgba(255,180,84,.16);}
+.c-me{color:var(--cat-memoria);background:rgba(139,108,255,.16);}
+.c-ca{color:var(--cat-calculo);background:rgba(78,217,164,.16);}
+.c-ve{color:var(--cat-velocidad);background:rgba(255,107,157,.16);}
+.c-lo{color:var(--cat-logica);background:rgba(79,195,247,.16);}
+
+/* Tipografía */
+.type-card{background:var(--superficie);border:1px solid var(--borde);
+  border-radius:var(--r-md);padding:20px;}
+.type-card .big{font-family:var(--display);font-size:2.2rem;font-weight:800;}
+.type-card .lbl{color:var(--texto-tenue);font-size:.78rem;margin-top:2px;}
+.type-card hr{border:none;border-top:1px solid var(--borde);margin:16px 0;}
+
+/* Componentes de ejemplo */
+.demo-card{background:var(--superficie);border:1px solid var(--borde);
+  border-radius:var(--r-lg);padding:22px;text-align:center;}
+.icono{width:84px;height:84px;border-radius:20px;background:var(--superficie2);
+  display:flex;align-items:center;justify-content:center;font-size:42px;margin:0 auto 14px;}
+.demo-card .nombre{font-size:1.9rem;margin:6px 0 18px;}
+.stats{display:flex;justify-content:space-around;margin:18px 0 4px;}
+.stat .n{font-family:var(--display);font-weight:800;font-size:1.4rem;}
+.stat .t{color:var(--texto-tenue);font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;}
+
+.btn{font-family:var(--cuerpo);font-weight:700;font-size:1.05rem;border:none;
+  border-radius:var(--r-pill);padding:15px 24px;width:100%;cursor:pointer;margin-top:10px;}
+.btn-filo{background:var(--filo);color:var(--sobre-claro);}
+.btn-primario{background:var(--primario);color:var(--texto);}
+.btn-fantasma{background:transparent;color:var(--texto);border:1px solid var(--borde);}
+
+.puntua{font-family:var(--display);font-weight:800;font-size:3.4rem;color:var(--filo);}
+
+/* Racha */
+.racha{display:flex;gap:10px;justify-content:center;font-size:30px;margin:8px 0;}
+.on{filter:none;} .off{opacity:.28;filter:grayscale(1);}
+.dias{display:flex;gap:18px;justify-content:center;color:var(--texto-tenue);
+  font-weight:700;font-size:.9rem;}
+.dias .hoy{color:var(--filo);}
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="wordmark">MENTANA</div>
+    <p>Entrena tu mente. Dirección visual: <strong>“Tinta y filo”.</strong></p>
+  </div>
+
+  <div class="section-title">Colores base</div>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#1A1426"></div><div class="meta"><div class="name">Fondo tinta</div><div class="hex">#1A1426</div></div></div>
+    <div class="sw"><div class="chip" style="background:#251D34"></div><div class="meta"><div class="name">Superficie</div><div class="hex">#251D34</div></div></div>
+    <div class="sw"><div class="chip" style="background:#322746"></div><div class="meta"><div class="name">Superficie 2</div><div class="hex">#322746</div></div></div>
+    <div class="sw"><div class="chip" style="background:#3D3154"></div><div class="meta"><div class="name">Borde</div><div class="hex">#3D3154</div></div></div>
+    <div class="sw"><div class="chip" style="background:#8B6CFF"></div><div class="meta"><div class="name">Primario · violeta</div><div class="hex">#8B6CFF</div></div></div>
+    <div class="sw"><div class="chip" style="background:#FF9F45"></div><div class="meta"><div class="name">Filo · ámbar</div><div class="hex">#FF9F45</div></div></div>
+    <div class="sw"><div class="chip" style="background:#F4EFFA"></div><div class="meta"><div class="name">Texto</div><div class="hex">#F4EFFA</div></div></div>
+    <div class="sw"><div class="chip" style="background:#B3A6C8"></div><div class="meta"><div class="name">Texto tenue</div><div class="hex">#B3A6C8</div></div></div>
+    <div class="sw"><div class="chip" style="background:#4ED9A4"></div><div class="meta"><div class="name">Éxito</div><div class="hex">#4ED9A4</div></div></div>
+    <div class="sw"><div class="chip" style="background:#FF6B7A"></div><div class="meta"><div class="name">Error</div><div class="hex">#FF6B7A</div></div></div>
+  </div>
+
+  <div class="section-title">Color por categoría cognitiva</div>
+  <div class="cats">
+    <span class="cat c-at">Atención</span>
+    <span class="cat c-me">Memoria</span>
+    <span class="cat c-ca">Cálculo</span>
+    <span class="cat c-ve">Velocidad</span>
+    <span class="cat c-lo">Lógica</span>
+  </div>
+
+  <div class="section-title">Tipografía</div>
+  <div class="type-card">
+    <div class="big">Afila tu mente</div>
+    <div class="lbl">Bricolage Grotesque · títulos y puntuaciones</div>
+    <hr>
+    <div style="font-size:1rem">Entrena unos minutos al día y mantén tu racha viva. Cada sesión cuenta.</div>
+    <div class="lbl">Hanken Grotesk · cuerpo e interfaz</div>
+  </div>
+
+  <div class="section-title">Ejemplo: intro de juego</div>
+  <div class="demo-card">
+    <div class="icono">👻</div>
+    <span class="cat c-me">Memoria</span>
+    <div class="nombre">Fantasmas Ocultos</div>
+    <div class="stats">
+      <div class="stat"><div class="n">1210</div><div class="t">Mejor</div></div>
+      <div class="stat"><div class="n">Nivel 2</div><div class="t">Dificultad</div></div>
+      <div class="stat"><div class="n">100%</div><div class="t">Precisión</div></div>
+    </div>
+    <button class="btn btn-filo">Comenzar</button>
+  </div>
+
+  <div class="section-title">Ejemplo: resultado y racha</div>
+  <div class="demo-card">
+    <div class="eyebrow">Mejor puntuación</div>
+    <div class="puntua">1225</div>
+    <div style="color:var(--texto-tenue);margin-bottom:12px">Has superado al 79% de tus compañeros</div>
+    <div class="racha">
+      <span class="on">🔥</span><span class="off">🔥</span><span class="off">🔥</span>
+      <span class="off">🔥</span><span class="off">🔥</span><span class="off">🔥</span><span class="off">🔥</span>
+    </div>
+    <div class="dias"><span class="hoy">L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+    <button class="btn btn-primario">Siguiente juego</button>
+    <button class="btn btn-fantasma">Terminar entrenamiento</button>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "MENTANA",
+  "short_name": "MENTANA",
+  "description": "Afila tu mente, todos los días.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#1A1426",
+  "theme_color": "#1A1426",
+  "icons": [
+    { "src": "./icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
