@@ -1,11 +1,12 @@
 // Pantalla: home — pantalla principal. Muestra la racha y el botón para
-// empezar (o continuar) la sesión de juegos del día.
+// empezar (o continuar) la sesión de juegos del día. Navegación a Juegos,
+// Tests y Perfil vive en la barra inferior (navInferior.js).
 
 import appConfig from '../../config/app.config.js';
-import store from '../store.js';
 import router from '../router.js';
 import { obtenerRacha, rachaEstaActiva } from '../streak.js';
 import { sesionDeHoy } from '../session.js';
+import { montarNav, ALTO_NAV } from '../navInferior.js';
 
 export default {
   render(container) {
@@ -18,7 +19,7 @@ export default {
       : (sesion.indiceActual > 0 ? 'Continuar sesión' : appConfig.textos.botonEmpezar);
 
     container.innerHTML = `
-      <div class="pantalla" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap: var(--esp-5); padding: var(--esp-5);">
+      <div class="pantalla" style="align-items:center; justify-content:center; padding-bottom:${ALTO_NAV}px;">
         <div class="tarjeta" style="text-align:center; max-width:340px; width:100%;">
           <div style="font-size:2rem;">${appConfig.marca.icono}</div>
           <h1 class="display" style="font-size: var(--txt-xl); margin-top: var(--esp-2);">${appConfig.textos.homeTitulo}</h1>
@@ -35,13 +36,6 @@ export default {
           <button id="btn-sesion" class="boton boton--filo" style="margin-top: var(--esp-5);" ${sesion.completada ? 'disabled' : ''}>
             ${textoBoton}
           </button>
-
-          <button id="btn-biblioteca" class="boton boton--primario" style="margin-top: var(--esp-3);">📚 Ver todos los juegos y tests</button>
-
-          <div style="display:flex; gap: var(--esp-3); margin-top: var(--esp-4);">
-            <button id="btn-progreso" class="boton boton--fantasma">Progreso</button>
-            <button id="btn-logros" class="boton boton--fantasma">Logros</button>
-          </div>
         </div>
       </div>
     `;
@@ -54,8 +48,6 @@ export default {
       });
     }
 
-    container.querySelector('#btn-biblioteca').addEventListener('click', () => router.ir('library'));
-    container.querySelector('#btn-progreso').addEventListener('click', () => router.ir('progress'));
-    container.querySelector('#btn-logros').addEventListener('click', () => router.ir('achievements'));
+    montarNav(container, 'hoy');
   }
 };

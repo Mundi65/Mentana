@@ -21,7 +21,7 @@ export default {
     `;
 
     container.querySelector('#btn-volver-test').addEventListener('click', () => {
-      router.ir('library');
+      router.ir('tests');
     });
   }
 };

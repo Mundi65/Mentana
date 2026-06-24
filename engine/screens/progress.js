@@ -4,6 +4,7 @@
 
 import store from '../store.js';
 import router from '../router.js';
+import { montarNav, ALTO_NAV } from '../navInferior.js';
 
 function ultimosNDias(n) {
   const dias = [];
@@ -47,7 +48,7 @@ export default {
     }).join('');
 
     container.innerHTML = `
-      <div class="pantalla" style="padding: var(--esp-5); max-width:480px; margin:auto;">
+      <div class="pantalla" style="max-width:480px; margin:auto; padding-bottom:${ALTO_NAV}px;">
         <h1 class="display" style="font-size: var(--txt-xl); margin-bottom: var(--esp-5);">Tu progreso</h1>
 
         <div style="display:flex; gap: var(--esp-3); margin-bottom: var(--esp-6);">
@@ -72,6 +73,7 @@ export default {
       </div>
     `;
 
-    container.querySelector('#btn-volver').addEventListener('click', () => router.ir('home'));
+    container.querySelector('#btn-volver').addEventListener('click', () => router.ir('perfil'));
+    montarNav(container, 'perfil');
   }
 };

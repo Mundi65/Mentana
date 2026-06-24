@@ -2,7 +2,7 @@
 // Cachea el "esqueleto" de la app (todo lo necesario para que abra sin
 // internet) y se actualiza solo cuando sube la versión de CACHE_NOMBRE.
 
-const CACHE_NOMBRE = 'mentana-v3';
+const CACHE_NOMBRE = 'mentana-v4';
 
 const ARCHIVOS_ESENCIALES = [
   './',
@@ -34,10 +34,13 @@ const ARCHIVOS_ESENCIALES = [
   './engine/screens/achievements.js',
   './engine/screens/streakScreen.js',
   './engine/screens/modals.js',
-  './engine/screens/library.js',
+  './engine/screens/juegos.js',
+  './engine/screens/testsMenu.js',
+  './engine/screens/perfil.js',
   './engine/screens/testIntro.js',
   './engine/screens/testPlay.js',
   './engine/screens/testResult.js',
+  './engine/navInferior.js',
   './engine/tests.js',
   './games/_iconos.js',
   './games/centinela.js',

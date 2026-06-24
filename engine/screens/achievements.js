@@ -2,6 +2,7 @@
 
 import router from '../router.js';
 import { logrosDesbloqueados, logrosPendientes } from '../achievements.js';
+import { montarNav, ALTO_NAV } from '../navInferior.js';
 
 function tarjetaLogro(logro, conseguido) {
   return `
@@ -21,7 +22,7 @@ export default {
     const pendientes = logrosPendientes();
 
     container.innerHTML = `
-      <div class="pantalla" style="padding: var(--esp-5); max-width:480px; margin:auto;">
+      <div class="pantalla" style="max-width:480px; margin:auto; padding-bottom:${ALTO_NAV}px;">
         <h1 class="display" style="font-size: var(--txt-xl); margin-bottom: var(--esp-5);">Logros</h1>
 
         <div class="eyebrow" style="margin-bottom: var(--esp-3);">Conseguidos (${conseguidos.length})</div>
@@ -34,6 +35,7 @@ export default {
       </div>
     `;
 
-    container.querySelector('#btn-volver').addEventListener('click', () => router.ir('home'));
+    container.querySelector('#btn-volver').addEventListener('click', () => router.ir('perfil'));
+    montarNav(container, 'perfil');
   }
 };

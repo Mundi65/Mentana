@@ -52,7 +52,7 @@ export default {
 
     container.querySelector('#btn-continuar').addEventListener('click', () => {
       if (modoLibre) {
-        router.ir('library'); // juego suelto desde el menú: no toca la sesión diaria.
+        router.ir('juegos'); // juego suelto desde el menú: no toca la sesión diaria.
         return;
       }
       const sesion = avanzarSesion();
