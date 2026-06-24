@@ -41,8 +41,11 @@ const appConfig = {
   ],
 
   // ---- JUEGOS ACTIVOS ----
-  // Lista de ids de /games que esta app usa.
-  juegosActivos: ['centinela'],
+  // Lista de ids de /games que esta app usa. El ORDEN aquí decide en qué
+  // orden se programan en la sesión diaria (session.js los toma en orden).
+  // Pendiente: decidir cuál va primero (debe ser el más "enganchador" y
+  // fácil de entender para no perder usuarios nuevos).
+  juegosActivos: ['centinela', 'eco-patrones', 'capas-recuerdo', 'filtro', 'balanza-mental', 'engranajes'],
 
   // ---- ENCUESTA DE ONBOARDING ----
   encuesta: [

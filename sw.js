@@ -34,7 +34,12 @@ const ARCHIVOS_ESENCIALES = [
   './engine/screens/achievements.js',
   './engine/screens/streakScreen.js',
   './engine/screens/modals.js',
-  './games/centinela.js'
+  './games/centinela.js',
+  './games/eco-patrones.js',
+  './games/capas-recuerdo.js',
+  './games/filtro.js',
+  './games/balanza-mental.js',
+  './games/engranajes.js'
 ];
 
 self.addEventListener('install', (evento) => {
