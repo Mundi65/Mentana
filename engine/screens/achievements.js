@@ -21,7 +21,7 @@ export default {
     const pendientes = logrosPendientes();
 
     container.innerHTML = `
-      <div style="min-height:100vh; padding: var(--esp-5); max-width:480px; margin:auto;">
+      <div class="pantalla" style="padding: var(--esp-5); max-width:480px; margin:auto;">
         <h1 class="display" style="font-size: var(--txt-xl); margin-bottom: var(--esp-5);">Logros</h1>
 
         <div class="eyebrow" style="margin-bottom: var(--esp-3);">Conseguidos (${conseguidos.length})</div>

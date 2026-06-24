@@ -83,8 +83,12 @@
 
 * { box-sizing: border-box; }
 
-body {
+html, body {
   margin: 0;
+  height: 100%;
+}
+
+body {
   background: var(--color-fondo);
   color: var(--color-texto);
   font-family: var(--fuente-cuerpo);
@@ -178,6 +182,46 @@ h1, h2, h3, .display {
 /* ---- Llama de racha (usa el "filo") ---- */
 .racha-activa { color: var(--color-filo); }
 .racha-inactiva { color: var(--color-borde); }
+
+/* ---- Pantalla completa (arregla el botón "muy abajo" en Android/iPhone) ----
+   100vh en móvil cuenta el espacio detrás de la barra del navegador; 100dvh
+   (cuando el navegador lo soporta) usa el alto REAL visible. Se ponen las dos:
+   los navegadores viejos usan 100vh, los nuevos sobreescriben con 100dvh.
+   El padding-bottom respeta el "home indicator" de iPhone (notch inferior). */
+.pantalla {
+  min-height: 100vh;
+  min-height: 100dvh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: var(--esp-5);
+  padding-bottom: max(var(--esp-5), env(safe-area-inset-bottom));
+}
+
+/* ---- Tarjeta de lista (menú de juegos/tests: ícono + texto + flecha) ---- */
+.fila-tarjeta {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-4);
+  cursor: pointer;
+  margin-bottom: var(--esp-3);
+}
+.fila-tarjeta .fila-icono {
+  font-size: 2rem;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radio-md);
+  background: var(--color-superficie-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.fila-tarjeta .fila-flecha {
+  color: var(--color-texto-tenue);
+  font-size: var(--txt-lg);
+  margin-left: auto;
+}
 
 /* ---- Accesibilidad: foco visible y respeto a movimiento reducido ---- */
 :focus-visible { outline: 2px solid var(--color-primario); outline-offset: 2px; }

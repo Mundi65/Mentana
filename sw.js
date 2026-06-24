@@ -2,7 +2,7 @@
 // Cachea el "esqueleto" de la app (todo lo necesario para que abra sin
 // internet) y se actualiza solo cuando sube la versión de CACHE_NOMBRE.
 
-const CACHE_NOMBRE = 'mentana-v1';
+const CACHE_NOMBRE = 'mentana-v2';
 
 const ARCHIVOS_ESENCIALES = [
   './',
@@ -34,12 +34,20 @@ const ARCHIVOS_ESENCIALES = [
   './engine/screens/achievements.js',
   './engine/screens/streakScreen.js',
   './engine/screens/modals.js',
+  './engine/screens/library.js',
+  './engine/screens/testIntro.js',
+  './engine/screens/testPlay.js',
+  './engine/screens/testResult.js',
+  './engine/tests.js',
+  './games/_iconos.js',
   './games/centinela.js',
   './games/eco-patrones.js',
   './games/capas-recuerdo.js',
   './games/filtro.js',
   './games/balanza-mental.js',
-  './games/engranajes.js'
+  './games/engranajes.js',
+  './tests/estilo-memoria.js',
+  './tests/tipo-pensador.js'
 ];
 
 self.addEventListener('install', (evento) => {

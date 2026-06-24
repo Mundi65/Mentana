@@ -19,6 +19,12 @@ export default {
   skills: ['atencion', 'concentracion'],
   icon: '🛡️',
   instructions: 'Toca "¡Ahora!" en cada letra... excepto cuando aparezca la Q. Ahí debes contenerte.',
+  comoJugar: [
+    'Van a aparecer letras, una tras otra, a un ritmo constante.',
+    'Toca el botón "¡Ahora!" en cuanto veas cualquier letra normal.',
+    'Si aparece la letra Q, NO toques nada: déjala pasar.',
+    'Cada etapa se pone un poco más rápida.'
+  ],
 
   difficulty(level) {
     return {
@@ -26,9 +32,9 @@ export default {
       timeLimitSec: null,
       goal: 'flawless',
       params: {
-        trialsPerStage: 10 + level * 2,
-        intervaloMs: Math.max(500, 950 - level * 50),
-        probabilidadNoGo: Math.min(0.35, 0.15 + level * 0.02)
+        trialsPerStage: 8 + level * 2,
+        intervaloMs: Math.max(550, 1100 - level * 50),
+        probabilidadNoGo: Math.min(0.35, 0.10 + level * 0.02)
       }
     };
   },
@@ -42,7 +48,7 @@ export default {
     let timerTrial = null;
 
     container.innerHTML = `
-      <div style="min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap: var(--esp-6); padding: var(--esp-5);">
+      <div class="pantalla" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap: var(--esp-6); padding: var(--esp-5);">
         <div class="eyebrow" id="centinela-etapa"></div>
         <div id="centinela-letra" style="font-family: var(--fuente-display); font-size: 6rem; font-weight: 800; color: var(--cat-atencion); min-height: 1.2em;"></div>
         <button id="centinela-btn" class="boton boton--filo" style="max-width: 240px;">¡Ahora!</button>

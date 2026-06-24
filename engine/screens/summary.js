@@ -43,7 +43,7 @@ export default {
     const { texto } = calcularResumen(estado.respuestasEncuesta, appConfig.reglasResumen);
 
     container.innerHTML = `
-      <div style="min-height:100vh; display:flex; align-items:center; justify-content:center; padding: var(--esp-5);">
+      <div class="pantalla" style="display:flex; align-items:center; justify-content:center; padding: var(--esp-5);">
         <div class="tarjeta" style="max-width:380px; width:100%;">
           <div class="eyebrow">${appConfig.textos.resumenTitulo}</div>
           <h1 class="display" style="font-size: var(--txt-xl); margin-top: var(--esp-2); margin-bottom: var(--esp-4);">${appConfig.marca.nombre}</h1>

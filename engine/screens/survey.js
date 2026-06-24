@@ -55,7 +55,7 @@ export default {
       }).join('');
 
       container.innerHTML = `
-        <div style="min-height:100vh; display:flex; flex-direction:column; padding: var(--esp-5); max-width:420px; margin:auto;">
+        <div class="pantalla" style="display:flex; flex-direction:column; padding: var(--esp-5); max-width:420px; margin:auto;">
           <div style="background: var(--color-superficie-2); border-radius: var(--radio-pastilla); height:6px; overflow:hidden; margin-bottom: var(--esp-5);">
             <div style="background: var(--color-primario); height:100%; width:${progreso}%; transition: width var(--trans-media);"></div>
           </div>

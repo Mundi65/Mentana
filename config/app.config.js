@@ -43,9 +43,15 @@ const appConfig = {
   // ---- JUEGOS ACTIVOS ----
   // Lista de ids de /games que esta app usa. El ORDEN aquí decide en qué
   // orden se programan en la sesión diaria (session.js los toma en orden).
-  // Pendiente: decidir cuál va primero (debe ser el más "enganchador" y
-  // fácil de entender para no perder usuarios nuevos).
-  juegosActivos: ['centinela', 'eco-patrones', 'capas-recuerdo', 'filtro', 'balanza-mental', 'engranajes'],
+  // Ordenados de más fácil/enganchador a más exigente: Eco de Patrones y
+  // Balanza Mental primero (rápidos de entender), Capas del Recuerdo
+  // (N-back) al final por ser el más abstracto.
+  juegosActivos: ['eco-patrones', 'balanza-mental', 'centinela', 'filtro', 'engranajes', 'capas-recuerdo'],
+
+  // ---- TESTS ACTIVOS ----
+  // Lista de ids de /tests que esta app usa. Se muestran junto a los juegos
+  // en la pantalla "Biblioteca".
+  testsActivos: ['estilo-memoria', 'tipo-pensador'],
 
   // ---- ENCUESTA DE ONBOARDING ----
   encuesta: [

@@ -8,12 +8,12 @@ import { ejecutarJuego } from '../gameRunner.js';
 import router from '../router.js';
 
 export default {
-  async render(container, { juegoId }) {
+  async render(container, { juegoId, modoLibre = false }) {
     const juego = await cargarJuego(juegoId);
 
     ejecutarJuego(juego, container, {
       onFinish(resultado, logrosNuevos) {
-        router.ir('gameResult', { juegoId, resultado, logrosNuevos });
+        router.ir('gameResult', { juegoId, resultado, logrosNuevos, modoLibre });
       }
     });
   }

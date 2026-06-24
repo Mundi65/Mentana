@@ -18,7 +18,7 @@ export default {
       : (sesion.indiceActual > 0 ? 'Continuar sesión' : appConfig.textos.botonEmpezar);
 
     container.innerHTML = `
-      <div style="min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap: var(--esp-5); padding: var(--esp-5);">
+      <div class="pantalla" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap: var(--esp-5); padding: var(--esp-5);">
         <div class="tarjeta" style="text-align:center; max-width:340px; width:100%;">
           <div style="font-size:2rem;">${appConfig.marca.icono}</div>
           <h1 class="display" style="font-size: var(--txt-xl); margin-top: var(--esp-2);">${appConfig.textos.homeTitulo}</h1>
@@ -36,6 +36,8 @@ export default {
             ${textoBoton}
           </button>
 
+          <button id="btn-biblioteca" class="boton boton--primario" style="margin-top: var(--esp-3);">📚 Ver todos los juegos y tests</button>
+
           <div style="display:flex; gap: var(--esp-3); margin-top: var(--esp-4);">
             <button id="btn-progreso" class="boton boton--fantasma">Progreso</button>
             <button id="btn-logros" class="boton boton--fantasma">Logros</button>
@@ -52,6 +54,7 @@ export default {
       });
     }
 
+    container.querySelector('#btn-biblioteca').addEventListener('click', () => router.ir('library'));
     container.querySelector('#btn-progreso').addEventListener('click', () => router.ir('progress'));
     container.querySelector('#btn-logros').addEventListener('click', () => router.ir('achievements'));
   }

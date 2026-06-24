@@ -3,7 +3,9 @@
 // copiar sus figuras): el jugador descubre el patrón de una secuencia visual
 // y elige la pieza que la completa. Mide razonamiento no verbal.
 
-const FORMAS = ['▲', '■', '★', '●', '◆', '▼'];
+import { ANIMALES } from './_iconos.js';
+
+const FORMAS = ANIMALES;
 const COLOR_VARS = ['--cat-atencion', '--cat-memoria', '--cat-calculo', '--cat-velocidad', '--cat-logica'];
 
 function generarItemPuntos(n) {
@@ -64,9 +66,9 @@ function generarRonda() {
 
 function renderizarItem(valor, esEstilo) {
   if (esEstilo === 'color') {
-    return `<div style="width:36px; height:36px; flex-shrink:0; border-radius: var(--radio-sm); background: var(${valor});"></div>`;
+    return `<div style="width:44px; height:44px; flex-shrink:0; border-radius: var(--radio-sm); background: var(${valor});"></div>`;
   }
-  return `<span style="font-size: 1.8rem;">${valor}</span>`;
+  return `<span style="font-size: 2.4rem; line-height:1;">${valor}</span>`;
 }
 
 export default {
@@ -76,6 +78,12 @@ export default {
   skills: ['resolucion_problemas', 'flexibilidad_cognitiva'],
   icon: '⚙️',
   instructions: 'Descubre el patrón de la secuencia y toca la pieza que la completa.',
+  comoJugar: [
+    'Vas a ver 3 piezas en fila, seguidas de un "?".',
+    'Busca el patrón: ¿se repite un ciclo? ¿aumenta una cantidad?',
+    'Toca, entre las 4 opciones, la pieza que sigue ese mismo patrón.',
+    'Cada ronda puede usar un patrón distinto (animales, colores o cantidades).'
+  ],
 
   difficulty(level) {
     return {
@@ -98,7 +106,7 @@ export default {
     let timerTrial = null;
 
     container.innerHTML = `
-      <div style="min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap: var(--esp-6); padding: var(--esp-5);">
+      <div class="pantalla" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap: var(--esp-6); padding: var(--esp-5);">
         <div class="eyebrow" id="engranajes-etapa"></div>
         <div id="engranajes-secuencia" style="display:flex; gap: var(--esp-3); align-items:center;"></div>
         <div id="engranajes-opciones" style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--esp-3); width: min(280px, 90vw);"></div>
@@ -129,9 +137,9 @@ export default {
       elEtapa.textContent = `Etapa ${stage} de ${ctx.config.stages} · ${trial}/${trialsPerStage}`;
 
       const celdasHTML = rondaActual.secuencia.map(v => `
-        <div class="tarjeta" style="width:60px; height:60px; padding:0; display:flex; align-items:center; justify-content:center;">${renderizarItem(v, rondaActual.esEstilo)}</div>
+        <div class="tarjeta" style="width:70px; height:70px; padding:0; display:flex; align-items:center; justify-content:center;">${renderizarItem(v, rondaActual.esEstilo)}</div>
       `).join('') + `
-        <div class="tarjeta" style="width:60px; height:60px; padding:0; display:flex; align-items:center; justify-content:center; border-color: var(--color-filo); color: var(--color-texto-tenue); font-size:1.5rem;">?</div>
+        <div class="tarjeta" style="width:70px; height:70px; padding:0; display:flex; align-items:center; justify-content:center; border-color: var(--color-filo); color: var(--color-texto-tenue); font-size:1.8rem;">?</div>
       `;
       elSecuencia.innerHTML = celdasHTML;
 

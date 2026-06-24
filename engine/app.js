@@ -18,6 +18,10 @@ import gameResult from './screens/gameResult.js';
 import progress from './screens/progress.js';
 import achievements from './screens/achievements.js';
 import streakScreen from './screens/streakScreen.js';
+import library from './screens/library.js';
+import testIntro from './screens/testIntro.js';
+import testPlay from './screens/testPlay.js';
+import testResult from './screens/testResult.js';
 import onboarding from './onboarding.js';
 
 function registrarPantallas() {
@@ -32,6 +36,10 @@ function registrarPantallas() {
   router.registrar('progress', progress);
   router.registrar('achievements', achievements);
   router.registrar('streakScreen', streakScreen);
+  router.registrar('library', library);
+  router.registrar('testIntro', testIntro);
+  router.registrar('testPlay', testPlay);
+  router.registrar('testResult', testResult);
 }
 
 function aplicarTema() {

@@ -10,6 +10,12 @@ export default {
   skills: ['memoria_corto_plazo', 'memoria_trabajo'],
   icon: '🔷',
   instructions: 'Memoriza el orden en que se iluminan las casillas y tócalas en el mismo orden.',
+  comoJugar: [
+    'Observa: algunas casillas se van a iluminar en un orden.',
+    'Cuando termine de mostrar, toca las MISMAS casillas en el MISMO orden.',
+    'Si te equivocas en una, esa etapa termina y empieza la siguiente.',
+    'Cada etapa agrega una casilla más a recordar.'
+  ],
 
   difficulty(level) {
     return {
@@ -18,7 +24,7 @@ export default {
       goal: 'flawless',
       params: {
         gridSize: Math.min(5, 3 + Math.floor((level - 1) / 2)),
-        secuenciaBase: 3 + level
+        secuenciaBase: 2 + level
       }
     };
   },
@@ -30,7 +36,7 @@ export default {
     const timers = [];
 
     container.innerHTML = `
-      <div style="min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap: var(--esp-5); padding: var(--esp-5);">
+      <div class="pantalla" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap: var(--esp-5); padding: var(--esp-5);">
         <div class="eyebrow" id="eco-etapa"></div>
         <div id="eco-grid" style="display:grid; grid-template-columns: repeat(${gridSize}, 1fr); gap: var(--esp-2); width: min(320px, 90vw);"></div>
         <p id="eco-mensaje" style="color: var(--color-texto-tenue); min-height: 1.2em;"></p>

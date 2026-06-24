@@ -3,7 +3,9 @@
 // trabajo): aparece un símbolo a la vez; el jugador indica si es igual al que
 // apareció N pasos atrás.
 
-const SIMBOLOS = ['▲', '■', '★', '●', '◆', '▼'];
+import { ANIMALES } from './_iconos.js';
+
+const SIMBOLOS = ANIMALES;
 
 export default {
   id: 'capas-recuerdo',
@@ -12,6 +14,12 @@ export default {
   skills: ['memoria_trabajo', 'concentracion'],
   icon: '🌀',
   instructions: 'Toca "¡Coincide!" cuando el símbolo actual sea igual al de unos pasos atrás.',
+  comoJugar: [
+    'Van a aparecer animales, uno a la vez, en el centro.',
+    'Compara el animal actual con el que apareció un poco antes.',
+    'Si son IGUALES, toca "¡Coincide!". Si son distintos, no toques nada.',
+    'Empieza comparando con el animal justo anterior; sube de nivel cuando ya hayas dominado eso.'
+  ],
 
   difficulty(level) {
     const n = Math.min(3, 1 + Math.floor((level - 1) / 2));
@@ -36,7 +44,7 @@ export default {
     let timerTrial = null;
 
     container.innerHTML = `
-      <div style="min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap: var(--esp-6); padding: var(--esp-5);">
+      <div class="pantalla" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap: var(--esp-6); padding: var(--esp-5);">
         <div class="eyebrow" id="capas-etapa"></div>
         <p style="color: var(--color-texto-tenue);">Compara con ${n} paso${n === 1 ? '' : 's'} atrás</p>
         <div id="capas-simbolo" style="font-size: 5rem; color: var(--cat-memoria); min-height:1.2em;"></div>

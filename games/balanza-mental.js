@@ -44,6 +44,12 @@ export default {
   skills: ['calculo_mental', 'velocidad_procesamiento'],
   icon: '⚖️',
   instructions: 'Resuelve la operación y toca la respuesta correcta antes de que se acabe el tiempo.',
+  comoJugar: [
+    'Va a aparecer una operación matemática simple (suma o resta al principio).',
+    'Calcúlala mentalmente y toca la respuesta correcta entre las 4 opciones.',
+    'Tienes unos segundos por operación; si se acaba el tiempo, cuenta como error.',
+    'Con los niveles aparecen números más grandes y, más adelante, multiplicaciones.'
+  ],
 
   difficulty(level) {
     return {
@@ -66,7 +72,7 @@ export default {
     let timerTrial = null;
 
     container.innerHTML = `
-      <div style="min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap: var(--esp-6); padding: var(--esp-5);">
+      <div class="pantalla" style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap: var(--esp-6); padding: var(--esp-5);">
         <div class="eyebrow" id="balanza-etapa"></div>
         <div id="balanza-operacion" style="font-family: var(--fuente-display); font-size: 3.5rem; font-weight: 800; min-height: 1.2em;"></div>
         <div id="balanza-opciones" style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--esp-3); width: min(280px, 90vw);"></div>

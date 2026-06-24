@@ -43,7 +43,7 @@ export default {
     `).join('');
 
     container.innerHTML = `
-      <div style="min-height:100vh; padding: var(--esp-5); max-width:420px; margin:auto;">
+      <div class="pantalla" style="padding: var(--esp-5); max-width:420px; margin:auto;">
         <h1 class="display" style="font-size: var(--txt-xl); margin-bottom: var(--esp-5);">${appConfig.textos.paywallTitulo}</h1>
         ${planesHTML}
         <button id="btn-prueba-gratis" class="boton boton--fantasma" style="margin-top: var(--esp-4);">${appConfig.textos.botonProbarGratis} (${appConfig.diasPrueba} días)</button>

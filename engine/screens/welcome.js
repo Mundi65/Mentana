@@ -7,7 +7,7 @@ import onboarding from '../onboarding.js';
 export default {
   render(container) {
     container.innerHTML = `
-      <div style="min-height:100vh; display:flex; align-items:center; justify-content:center; padding: var(--esp-5);">
+      <div class="pantalla" style="display:flex; align-items:center; justify-content:center; padding: var(--esp-5);">
         <div class="tarjeta" style="text-align:center; max-width:340px; width:100%;">
           <div style="font-size:3rem;">${appConfig.marca.icono}</div>
           <h1 class="display" style="font-size: var(--txt-2xl); margin-top: var(--esp-3);">${appConfig.textos.bienvenidaTitulo}</h1>

@@ -10,7 +10,7 @@ import { registrarEntrenamientoDeHoy } from '../streak.js';
 import { evaluarLogros } from '../achievements.js';
 
 export default {
-  async render(container, { juegoId, resultado, logrosNuevos = [] }) {
+  async render(container, { juegoId, resultado, logrosNuevos = [], modoLibre = false }) {
     const juego = await cargarJuego(juegoId);
 
     const logrosHTML = logrosNuevos.length > 0
@@ -21,7 +21,7 @@ export default {
       : '';
 
     container.innerHTML = `
-      <div style="min-height:100vh; display:flex; align-items:center; justify-content:center; padding: var(--esp-5);">
+      <div class="pantalla" style="display:flex; align-items:center; justify-content:center; padding: var(--esp-5);">
         <div class="tarjeta" style="text-align:center; max-width:340px; width:100%;">
           <div class="eyebrow">${juego.name}</div>
           <div class="puntuacion-grande" style="margin-top: var(--esp-2);">${resultado.precision}%</div>
@@ -51,6 +51,10 @@ export default {
     `;
 
     container.querySelector('#btn-continuar').addEventListener('click', () => {
+      if (modoLibre) {
+        router.ir('library'); // juego suelto desde el menú: no toca la sesión diaria.
+        return;
+      }
       const sesion = avanzarSesion();
       if (sesion.completada) {
         registrarEntrenamientoDeHoy();
