@@ -46,7 +46,7 @@ const appConfig = {
   // Ordenados de más fácil/enganchador a más exigente: Eco de Patrones y
   // Balanza Mental primero (rápidos de entender), Capas del Recuerdo
   // (N-back) al final por ser el más abstracto.
-  juegosActivos: ['eco-patrones', 'balanza-mental', 'centinela', 'filtro', 'engranajes', 'capas-recuerdo', 'sopa-de-letras', 'clasificar-colores', 'conecta-tuberias', 'un-trazo', 'rompecabezas-bloques'],
+  juegosActivos: ['eco-patrones', 'balanza-mental', 'centinela', 'filtro', 'engranajes', 'capas-recuerdo', 'sopa-de-letras', 'clasificar-colores', 'conecta-tuberias', 'un-trazo', 'rompecabezas-bloques', 'crucigrama'],
 
   // ---- TESTS ACTIVOS ----
   // Lista de ids de /tests que esta app usa. Se muestran junto a los juegos
