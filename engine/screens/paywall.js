@@ -6,6 +6,7 @@ import appConfig from '../../config/app.config.js';
 import store from '../store.js';
 import payments from '../payments.js';
 import router from '../router.js';
+import { montarBotonAtras } from '../botonAtras.js';
 
 function activarPruebaGratis() {
   store.actualizar((s) => {
@@ -61,19 +62,21 @@ export default {
 
         if (resultado.estado === 'exito') {
           activarSuscripcion(planId);
-          router.ir('home');
+          router.ir('home', {}, { reemplazar: true });
         } else {
           // 'cancelado' o 'fallo': no se cobró, activamos la prueba gratis.
           mensaje.textContent = 'No se completó el pago. Activamos tu prueba gratis.';
           activarPruebaGratis();
-          router.ir('home');
+          router.ir('home', {}, { reemplazar: true });
         }
       });
     });
 
     container.querySelector('#btn-prueba-gratis').addEventListener('click', () => {
       activarPruebaGratis();
-      router.ir('home');
+      router.ir('home', {}, { reemplazar: true });
     });
+
+    montarBotonAtras(container);
   }
 };

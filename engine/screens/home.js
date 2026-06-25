@@ -7,6 +7,7 @@ import router from '../router.js';
 import { obtenerRacha, rachaEstaActiva } from '../streak.js';
 import { sesionDeHoy } from '../session.js';
 import { montarNav, ALTO_NAV } from '../navInferior.js';
+import { montarBotonAtras } from '../botonAtras.js';
 
 export default {
   render(container) {
@@ -49,5 +50,6 @@ export default {
     }
 
     montarNav(container, 'hoy');
+    montarBotonAtras(container);
   }
 };

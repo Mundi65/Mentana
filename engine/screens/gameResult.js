@@ -8,10 +8,12 @@ import router from '../router.js';
 import { avanzarSesion } from '../session.js';
 import { registrarEntrenamientoDeHoy } from '../streak.js';
 import { evaluarLogros } from '../achievements.js';
+import { montarBotonAtras } from '../botonAtras.js';
 
 export default {
-  async render(container, { juegoId, resultado, logrosNuevos = [], modoLibre = false }) {
+  async render(container, { juegoId, resultado, logrosNuevos = [], modoLibre = false }, token) {
     const juego = await cargarJuego(juegoId);
+    if (!router.esVigente(token)) return; // el usuario ya navegó a otra pantalla mientras esto cargaba.
 
     const logrosHTML = logrosNuevos.length > 0
       ? `<div class="tarjeta" style="margin-top: var(--esp-4); border-color: var(--color-filo);">
@@ -52,17 +54,19 @@ export default {
 
     container.querySelector('#btn-continuar').addEventListener('click', () => {
       if (modoLibre) {
-        router.ir('juegos'); // juego suelto desde el menú: no toca la sesión diaria.
+        router.ir('juegos', {}, { reemplazar: true }); // juego suelto: no toca la sesión diaria.
         return;
       }
       const sesion = avanzarSesion();
       if (sesion.completada) {
         registrarEntrenamientoDeHoy();
         evaluarLogros(); // revisa logros que dependen de racha/sesiones (no del último juego).
-        router.ir('home');
+        router.ir('home', {}, { reemplazar: true });
       } else {
-        router.ir('gameIntro', { juegoId: sesion.juegosId[sesion.indiceActual] });
+        router.ir('gameIntro', { juegoId: sesion.juegosId[sesion.indiceActual] }, { reemplazar: true });
       }
     });
+
+    montarBotonAtras(container);
   }
 };

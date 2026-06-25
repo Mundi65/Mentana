@@ -2,10 +2,12 @@
 
 import { cargarTest, calcularPerfilGanador } from '../tests.js';
 import router from '../router.js';
+import { montarBotonAtras } from '../botonAtras.js';
 
 export default {
-  async render(container, { testId, clavesElegidas }) {
+  async render(container, { testId, clavesElegidas }, token) {
     const test = await cargarTest(testId);
+    if (!router.esVigente(token)) return;
     const perfil = calcularPerfilGanador(test, clavesElegidas);
 
     container.innerHTML = `
@@ -21,7 +23,9 @@ export default {
     `;
 
     container.querySelector('#btn-volver-test').addEventListener('click', () => {
-      router.ir('tests');
+      router.ir('tests', {}, { reemplazar: true });
     });
+
+    montarBotonAtras(container);
   }
 };

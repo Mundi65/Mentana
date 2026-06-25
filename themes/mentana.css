@@ -195,6 +195,7 @@ h1, h2, h3, .display {
   display: flex;
   flex-direction: column;
   padding: var(--esp-5);
+  padding-top: max(64px, env(safe-area-inset-top));
   padding-bottom: max(var(--esp-5), env(safe-area-inset-bottom));
 }
 

@@ -5,6 +5,7 @@
 import appConfig from '../../config/app.config.js';
 import store from '../store.js';
 import onboarding from '../onboarding.js';
+import { montarBotonAtras } from '../botonAtras.js';
 
 // Convierte una lista de objetivos en texto natural: "memoria, atención y cálculo".
 function listaEnTexto(items) {
@@ -56,5 +57,7 @@ export default {
     container.querySelector('#btn-continuar').addEventListener('click', () => {
       onboarding.irAPaywall();
     });
+
+    montarBotonAtras(container);
   }
 };

@@ -3,6 +3,7 @@
 import router from '../router.js';
 import { logrosDesbloqueados, logrosPendientes } from '../achievements.js';
 import { montarNav, ALTO_NAV } from '../navInferior.js';
+import { montarBotonAtras } from '../botonAtras.js';
 
 function tarjetaLogro(logro, conseguido) {
   return `
@@ -37,5 +38,6 @@ export default {
 
     container.querySelector('#btn-volver').addEventListener('click', () => router.ir('perfil'));
     montarNav(container, 'perfil');
+    montarBotonAtras(container);
   }
 };

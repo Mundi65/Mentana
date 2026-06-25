@@ -5,6 +5,7 @@
 import appConfig from '../../config/app.config.js';
 import { cargarJuego } from '../games.js';
 import router from '../router.js';
+import { montarBotonAtras } from '../botonAtras.js';
 
 function nombreHabilidad(id) {
   const h = appConfig.habilidades.find(h => h.id === id);
@@ -12,10 +13,11 @@ function nombreHabilidad(id) {
 }
 
 export default {
-  async render(container, { juegoId, modoLibre = false }) {
+  async render(container, { juegoId, modoLibre = false }, token) {
     container.innerHTML = `<div class="pantalla" style="align-items:center; justify-content:center;"><p style="color: var(--color-texto-tenue);">${appConfig.textos.cargando}</p></div>`;
 
     const juego = await cargarJuego(juegoId);
+    if (!router.esVigente(token)) return; // el usuario ya navegó a otra pantalla mientras esto cargaba.
     const chipsHabilidades = juego.skills.map(id => `<span class="cat-chip cat-${juego.category}">${nombreHabilidad(id)}</span>`).join(' ');
     const pasos = juego.comoJugar || [];
     const pasosHTML = pasos.length > 0
@@ -41,5 +43,7 @@ export default {
     container.querySelector('#btn-jugar').addEventListener('click', () => {
       router.ir('gamePlay', { juegoId, modoLibre });
     });
+
+    montarBotonAtras(container);
   }
 };

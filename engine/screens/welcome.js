@@ -3,6 +3,7 @@
 
 import appConfig from '../../config/app.config.js';
 import onboarding from '../onboarding.js';
+import { montarBotonAtras } from '../botonAtras.js';
 
 export default {
   render(container) {
@@ -20,5 +21,7 @@ export default {
     container.querySelector('#btn-empezar').addEventListener('click', () => {
       onboarding.irASurvey();
     });
+
+    montarBotonAtras(container);
   }
 };

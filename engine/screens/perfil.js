@@ -6,6 +6,7 @@ import store from '../store.js';
 import router from '../router.js';
 import { obtenerRacha, rachaEstaActiva } from '../streak.js';
 import { montarNav, ALTO_NAV } from '../navInferior.js';
+import { montarBotonAtras } from '../botonAtras.js';
 
 function diasDesde(fechaISO) {
   const a = new Date(fechaISO + 'T00:00:00');
@@ -67,5 +68,6 @@ export default {
     container.querySelector('#ir-logros').addEventListener('click', () => router.ir('achievements'));
 
     montarNav(container, 'perfil');
+    montarBotonAtras(container);
   }
 };

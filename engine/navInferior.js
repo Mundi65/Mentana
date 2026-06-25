@@ -45,6 +45,6 @@ export function montarNav(container, activo) {
   container.appendChild(nav);
 
   nav.querySelectorAll('button').forEach((boton) => {
-    boton.addEventListener('click', () => router.ir(boton.dataset.ruta));
+    boton.addEventListener('click', () => router.ir(boton.dataset.ruta, {}, { reemplazar: true }));
   });
 }

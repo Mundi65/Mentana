@@ -4,12 +4,14 @@ import appConfig from '../../config/app.config.js';
 import { cargarTest } from '../tests.js';
 import router from '../router.js';
 import { montarNav, ALTO_NAV } from '../navInferior.js';
+import { montarBotonAtras } from '../botonAtras.js';
 
 export default {
-  async render(container) {
+  async render(container, params, token) {
     container.innerHTML = `<div class="pantalla" style="align-items:center; justify-content:center;"><p style="color: var(--color-texto-tenue);">${appConfig.textos.cargando}</p></div>`;
 
     const tests = await Promise.all((appConfig.testsActivos || []).map(cargarTest));
+    if (!router.esVigente(token)) return;
 
     const filaTest = (t) => `
       <div class="fila-tarjeta" data-id="${t.id}">
@@ -36,5 +38,6 @@ export default {
     });
 
     montarNav(container, 'tests');
+    montarBotonAtras(container);
   }
 };

@@ -2,12 +2,14 @@
 
 import { cargarTest } from '../tests.js';
 import router from '../router.js';
+import { montarBotonAtras } from '../botonAtras.js';
 
 export default {
-  async render(container, { testId }) {
+  async render(container, { testId }, token) {
     container.innerHTML = `<div class="pantalla" style="align-items:center; justify-content:center;"><p style="color: var(--color-texto-tenue);">Cargando…</p></div>`;
 
     const test = await cargarTest(testId);
+    if (!router.esVigente(token)) return;
 
     container.innerHTML = `
       <div class="pantalla" style="align-items:center; justify-content:center;">
@@ -25,5 +27,7 @@ export default {
     container.querySelector('#btn-empezar-test').addEventListener('click', () => {
       router.ir('testPlay', { testId });
     });
+
+    montarBotonAtras(container);
   }
 };

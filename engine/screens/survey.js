@@ -6,6 +6,7 @@
 import appConfig from '../../config/app.config.js';
 import store from '../store.js';
 import onboarding from '../onboarding.js';
+import { montarBotonAtras } from '../botonAtras.js';
 
 // Saca el texto visible de una opción (puede ser string o {label, valor}).
 function etiquetaDe(opcion) {
@@ -92,6 +93,8 @@ export default {
         delete respuestas[p.guarda];
         avanzar();
       });
+
+      montarBotonAtras(container);
     }
 
     function avanzar() {

@@ -5,6 +5,7 @@
 import store from '../store.js';
 import router from '../router.js';
 import { montarNav, ALTO_NAV } from '../navInferior.js';
+import { montarBotonAtras } from '../botonAtras.js';
 
 function ultimosNDias(n) {
   const dias = [];
@@ -75,5 +76,6 @@ export default {
 
     container.querySelector('#btn-volver').addEventListener('click', () => router.ir('perfil'));
     montarNav(container, 'perfil');
+    montarBotonAtras(container);
   }
 };
