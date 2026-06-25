@@ -185,4 +185,26 @@ vencida sin suscripción → muro de pago. Lógica en `/engine`, valores en `/co
 - **Logro**: hito desbloqueable de `/config`.
 - **Prueba gratis**: N días de acceso si no se completa el pago inicial.
 - **Categorías**: atencion, memoria, calculo, velocidad, logica.
+
+---
+
+## 10. Bitácora de estado
+
+> Última actualización: 2026-06-25. Estado: **app funcionando de punta a punta, 12 juegos + 2 tests + menú inferior, desplegada en GitHub Pages.**
+
+**Hecho:**
+- Motor completo (Pasos 1-6 del plan original): onboarding, paywall (stub), store, router con historial + botón "Atrás" + limpieza automática de timers, achievements, progreso, racha, PWA (manifest + service worker).
+- **Menú inferior fijo** (`engine/navInferior.js`): pestañas Hoy / Juegos / Tests / Perfil. Perfil consolida racha, plan y accesos a Progreso/Logros.
+- **Sistema de Tests** (`/tests`, separado de `/games`): da un "perfil" de resultado, no precisión/nivel. 2 tests activos: `estilo-memoria` (cognitivo), `tipo-pensador` (personalidad).
+- **12 juegos activos** en `/games` (ver `config/app.config.js` → `juegosActivos`, el ORDEN ahí decide el orden de la sesión diaria):
+  - 6 originales (paradigmas clínicos reales): `centinela` (SART), `eco-patrones` (Corsi), `capas-recuerdo` (N-back), `filtro` (Stroop), `balanza-mental` (cálculo), `engranajes` (matrices de razonamiento).
+  - 6 "populares con cara de MENTANA" (génerico casual, generación procedimental, siempre con solución garantizada): `sopa-de-letras`, `clasificar-colores` (tubos de ensayo con animación de verter), `conecta-tuberias` (estilo Flow), `un-trazo` (camino euleriano), `rompecabezas-bloques` (estilo block-blast), `crucigrama` (intersecciones reales, se resuelve con letras desordenadas porque no hay teclado en pantalla).
+- Bug grande resuelto: la app se "atrapaba" porque (1) los timers de un juego abandonado seguían corriendo y podían forzar una navegación inesperada, y (2) el Service Worker viejo no se activaba solo (faltaba `skipWaiting`/`clients.claim`). Ambos corregidos en `router.js` y `sw.js`.
+- Repo: `github.com/Mundi65/Mentana` (rama `main`) → desplegado en `https://mundi65.github.io/Mentana/`. El Service Worker cachea agresivo: **cada cambio visible requiere subir la versión de `CACHE_NOMBRE` en `sw.js`**, si no, los usuarios no ven el cambio.
+
+**Pendiente (próxima sesión):**
+- [ ] **Pulir visualmente cada uno de los 12 juegos** (Edmund lo pidió explícitamente, empezar la próxima sesión).
+- [ ] Edmund va a presentar opciones de juegos/contenido para un **plan de suscriptores** (de pago) — todavía no definido qué los distingue de los gratuitos.
+- [ ] Sigue creciendo el catálogo de tests "importantes" (Edmund quiere más).
+- [ ] Revisar/decidir el orden final de `juegosActivos` con calma una vez estén pulidos visualmente (orden actual es solo una sugerencia razonada, no definitiva).
 ```
