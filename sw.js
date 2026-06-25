@@ -2,7 +2,7 @@
 // Cachea el "esqueleto" de la app (todo lo necesario para que abra sin
 // internet) y se actualiza solo cuando sube la versión de CACHE_NOMBRE.
 
-const CACHE_NOMBRE = 'mentana-v8';
+const CACHE_NOMBRE = 'mentana-v9';
 
 const ARCHIVOS_ESENCIALES = [
   './',
@@ -53,21 +53,26 @@ const ARCHIVOS_ESENCIALES = [
   './games/sopa-de-letras.js',
   './games/clasificar-colores.js',
   './games/conecta-tuberias.js',
+  './games/un-trazo.js',
   './tests/estilo-memoria.js',
   './tests/tipo-pensador.js'
 ];
 
 self.addEventListener('install', (evento) => {
   evento.waitUntil(
-    caches.open(CACHE_NOMBRE).then((cache) => cache.addAll(ARCHIVOS_ESENCIALES))
+    caches.open(CACHE_NOMBRE)
+      .then((cache) => cache.addAll(ARCHIVOS_ESENCIALES))
+      .then(() => self.skipWaiting()) // no esperar a que se cierren todas las pestañas: activarse ya.
   );
 });
 
 self.addEventListener('activate', (evento) => {
   evento.waitUntil(
-    caches.keys().then((nombres) =>
-      Promise.all(nombres.filter((n) => n !== CACHE_NOMBRE).map((n) => caches.delete(n)))
-    )
+    caches.keys()
+      .then((nombres) =>
+        Promise.all(nombres.filter((n) => n !== CACHE_NOMBRE).map((n) => caches.delete(n)))
+      )
+      .then(() => self.clients.claim()) // tomar control de las pestañas ya abiertas, sin esperar a que recarguen.
   );
 });
 
