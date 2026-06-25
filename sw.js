@@ -2,7 +2,7 @@
 // Cachea el "esqueleto" de la app (todo lo necesario para que abra sin
 // internet) y se actualiza solo cuando sube la versión de CACHE_NOMBRE.
 
-const CACHE_NOMBRE = 'mentana-v6';
+const CACHE_NOMBRE = 'mentana-v7';
 
 const ARCHIVOS_ESENCIALES = [
   './',

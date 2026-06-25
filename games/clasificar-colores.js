@@ -1,9 +1,9 @@
 // /games/clasificar-colores.js — categoría: logica
 // Clásico popular de internet (sort de colores en tubos), hecho a la cara
-// de MENTANA. Cada tubo es una columna; viertes el color de arriba de un
-// tubo en otro hasta que cada tubo quede de un solo color. Entrena
-// planificación y memoria de trabajo (recordar dónde está cada color
-// mientras decides el siguiente paso).
+// de MENTANA. Cada tubo de ensayo es una columna; viertes el color de
+// arriba de un tubo en otro hasta que cada tubo quede de un solo color.
+// Entrena planificación y memoria de trabajo (recordar dónde está cada
+// color mientras decides el siguiente paso).
 //
 // Generación SIEMPRE resoluble: se arma el rompecabezas ya resuelto y se
 // "desordena" aplicando movimientos válidos (la operación inversa de un
@@ -60,6 +60,10 @@ function estaResuelto(tubo, capacidad) {
   return tubo.every(c => c === tubo[0]);
 }
 
+// Ancho/alto del tubo de ensayo (chico, a propósito).
+const ANCHO_TUBO = 38;
+const ALTO_SEGMENTO = 22;
+
 export default {
   id: 'clasificar-colores',
   name: 'Clasificar Colores',
@@ -93,11 +97,13 @@ export default {
     let stage = 1;
     let tubos = [];
     let origenSeleccionado = null;
+    let animando = false;
+    const timers = [];
 
     container.innerHTML = `
       <div class="pantalla" style="align-items:center; justify-content:center;">
         <div class="eyebrow" id="colores-etapa" style="margin-bottom: var(--esp-5);"></div>
-        <div id="colores-tubos" style="display:flex; gap: var(--esp-3); flex-wrap:wrap; justify-content:center; max-width: 480px;"></div>
+        <div id="colores-tubos" style="display:flex; gap: var(--esp-3); flex-wrap:wrap; justify-content:center; max-width: 480px; align-items:flex-end;"></div>
         <p id="colores-mensaje" style="color: var(--color-texto-tenue); margin-top: var(--esp-5); min-height: 1.2em;"></p>
       </div>
     `;
@@ -106,47 +112,74 @@ export default {
     const elEtapa = container.querySelector('#colores-etapa');
     const elMensaje = container.querySelector('#colores-mensaje');
 
+    function segmentoLiquido(color) {
+      return `<div style="
+        width:100%; height:${ALTO_SEGMENTO}px; flex-shrink:0;
+        background: linear-gradient(180deg, color-mix(in srgb, var(${color}) 70%, white) 0%, var(${color}) 35%, var(${color}) 100%);
+        border-radius: 2px;
+      "></div>`;
+    }
+
     function dibujarTubos() {
       elTubos.innerHTML = tubos.map((tubo, indice) => {
-        const segmentos = tubo.map(color => `
-          <div style="width:100%; flex:1; background: var(${color}); border-radius: 4px;"></div>
-        `).join('');
+        const segmentos = tubo.map(segmentoLiquido).join('');
         const seleccionado = indice === origenSeleccionado;
+        const altoTubo = capacidad * ALTO_SEGMENTO + 10;
         return `
-          <button data-indice="${indice}" style="
-            width: 56px; height: 160px; display:flex; flex-direction:column-reverse; gap:3px;
-            padding: 6px; border-radius: var(--radio-md); cursor:pointer;
-            background: var(--color-superficie-2);
+          <button data-indice="${indice}" class="tubo-ensayo" style="
+            width: ${ANCHO_TUBO}px; height: ${altoTubo}px; display:flex; flex-direction:column-reverse; gap:2px;
+            padding: 4px; cursor:pointer; box-sizing:border-box;
+            background: color-mix(in srgb, var(--color-superficie-2) 60%, transparent);
             border: 2px solid ${seleccionado ? 'var(--color-filo)' : 'var(--color-borde)'};
           ">${segmentos}</button>
         `;
       }).join('');
     }
 
+    function tuboEl(indice) {
+      return elTubos.querySelector(`button[data-indice="${indice}"]`);
+    }
+
     function intentarMovimiento(destinoIndice) {
-      const origen = tubos[origenSeleccionado];
+      const origenIndice = origenSeleccionado;
+      const origen = tubos[origenIndice];
       const destino = tubos[destinoIndice];
-      const valido = origenSeleccionado !== destinoIndice && puedeVerter(origen, destino, capacidad);
+      const valido = origenIndice !== destinoIndice && puedeVerter(origen, destino, capacidad);
 
       ctx.reportAnswer(valido);
-
-      if (valido) {
-        verter(origen, destino, capacidad, false);
-        elMensaje.textContent = '';
-      } else {
-        elMensaje.textContent = 'No se puede verter ahí.';
-      }
-
       origenSeleccionado = null;
-      dibujarTubos();
 
-      if (tubos.every(t => estaResuelto(t, capacidad))) {
-        elMensaje.textContent = '¡Resuelto!';
-        setTimeout(terminarEtapa, 500);
+      if (!valido) {
+        elMensaje.textContent = 'No se puede verter ahí.';
+        dibujarTubos();
+        return;
       }
+
+      elMensaje.textContent = '';
+      animando = true;
+      elTubos.style.pointerEvents = 'none';
+
+      const elOrigen = tuboEl(origenIndice);
+      const claseInclinar = destinoIndice > origenIndice ? 'tubo-inclinar-der' : 'tubo-inclinar-izq';
+      if (elOrigen) elOrigen.classList.add(claseInclinar);
+
+      timers.push(setTimeout(() => {
+        verter(origen, destino, capacidad, false);
+        dibujarTubos();
+        const elDestino = tuboEl(destinoIndice);
+        if (elDestino) elDestino.classList.add('tubo-pulso');
+        elTubos.style.pointerEvents = '';
+        animando = false;
+
+        if (tubos.every(t => estaResuelto(t, capacidad))) {
+          elMensaje.textContent = '¡Resuelto!';
+          timers.push(setTimeout(terminarEtapa, 600));
+        }
+      }, 350));
     }
 
     elTubos.addEventListener('click', (evento) => {
+      if (animando) return;
       const boton = evento.target.closest('button');
       if (!boton) return;
       const indice = Number(boton.dataset.indice);
@@ -181,6 +214,8 @@ export default {
         ctx.finishGame();
       }
     }
+
+    ctx.onCleanup(() => timers.forEach(clearTimeout));
 
     ctx.startStage(stage);
     correrEtapa();

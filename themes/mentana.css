@@ -183,6 +183,31 @@ h1, h2, h3, .display {
 .racha-activa { color: var(--color-filo); }
 .racha-inactiva { color: var(--color-borde); }
 
+/* ---- Tubo de ensayo (juego Clasificar Colores) ---- */
+.tubo-ensayo {
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  transform-origin: bottom center;
+}
+
+@keyframes mentana-inclinar-der {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-32deg); }
+}
+@keyframes mentana-inclinar-izq {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(32deg); }
+}
+@keyframes mentana-pulso {
+  0%, 100% { transform: scale(1); }
+  40% { transform: scale(1.12); }
+}
+.tubo-inclinar-der { animation: mentana-inclinar-der 600ms ease-in-out; }
+.tubo-inclinar-izq { animation: mentana-inclinar-izq 600ms ease-in-out; }
+.tubo-pulso { animation: mentana-pulso 350ms ease-out; }
+
 /* ---- Pantalla completa (arregla el botón "muy abajo" en Android/iPhone) ----
    100vh en móvil cuenta el espacio detrás de la barra del navegador; 100dvh
    (cuando el navegador lo soporta) usa el alto REAL visible. Se ponen las dos:
