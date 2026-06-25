@@ -2,7 +2,7 @@
 // Cachea el "esqueleto" de la app (todo lo necesario para que abra sin
 // internet) y se actualiza solo cuando sube la versión de CACHE_NOMBRE.
 
-const CACHE_NOMBRE = 'mentana-v5';
+const CACHE_NOMBRE = 'mentana-v6';
 
 const ARCHIVOS_ESENCIALES = [
   './',
@@ -51,6 +51,7 @@ const ARCHIVOS_ESENCIALES = [
   './games/balanza-mental.js',
   './games/engranajes.js',
   './games/sopa-de-letras.js',
+  './games/clasificar-colores.js',
   './tests/estilo-memoria.js',
   './tests/tipo-pensador.js'
 ];
